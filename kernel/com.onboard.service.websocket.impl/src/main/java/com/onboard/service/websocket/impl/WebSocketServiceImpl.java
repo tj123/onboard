@@ -15,15 +15,13 @@
  *******************************************************************************/
 package com.onboard.service.websocket.impl;
 
-import java.io.IOException;
-import java.nio.CharBuffer;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
+import com.onboard.domain.model.Activity;
+import com.onboard.domain.model.Notification;
+import com.onboard.domain.model.User;
+import com.onboard.service.websocket.WebSocketService;
 import org.apache.catalina.websocket.MessageInbound;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -32,13 +30,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.onboard.domain.model.Activity;
-import com.onboard.domain.model.Notification;
-import com.onboard.domain.model.User;
-import com.onboard.service.websocket.WebSocketService;
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.nio.CharBuffer;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 
 @Service("webSocketServiceBean")
 public class WebSocketServiceImpl implements WebSocketService {

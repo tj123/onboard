@@ -9,27 +9,27 @@
     ng-show="todo.id">
 
 
-    <div class="todo-description pointer" open-drawer="todo" open-drawer-params="{id: todo.id}">
-      <span class="project-todo-id text-muted">#{{todo.projectTodoId}}</span>
-      <div class="todo-type-icons">
-        <i class="fa" ng-class="{'fa-bars': todo.todoType == 'task',
+  <div class="todo-description pointer" open-drawer="todo" open-drawer-params="{id: todo.id}">
+    <span class="project-todo-id text-muted">#{{todo.projectTodoId}}</span>
+    <div class="todo-type-icons">
+      <i class="fa" ng-class="{'fa-bars': todo.todoType == 'task',
                                        'fa-bookmark': todo.todoType == 'story',
                                        'fa-bug': todo.todoType == 'bug' }"></i>
-      </div>
-
-      <span class="label label-primary" ng-show="todo.user">{{todo.user.name}}</span>
-      <span class="label label-warning" ng-show="todo.dueDate">{{ todo.dueDate | date: 'yyyy-MM-dd'}}</span>
-
-      <div class="todo-title" title="{{todo.content}}">
-        {{todo.content}}
-      </div>
     </div>
 
-    <span class="todo-item-options">
+    <span class="label label-primary" ng-show="todo.user">{{todo.user.name}}</span>
+    <span class="label label-warning" ng-show="todo.dueDate">{{ todo.dueDate | date: 'yyyy-MM-dd'}}</span>
+
+    <div class="todo-title" title="{{todo.content}}">
+      {{todo.content}}
+    </div>
+  </div>
+
+  <span class="todo-item-options">
         <i class="fa fa-close pointer" ng-click="deleteTodo(todo)"></i>
     </span>
-    <span class="toNext" ng-click="toNextStatus(todo)"
-          ng-class="{'toNext': todo.status != 'closed', 'hidden': todo.status == 'closed'}">
+  <span class="toNext" ng-click="toNextStatus(todo)"
+        ng-class="{'toNext': todo.status != 'closed', 'hidden': todo.status == 'closed'}">
         <i class="fa fa-chevron-right pointer"></i>
     </span>
 

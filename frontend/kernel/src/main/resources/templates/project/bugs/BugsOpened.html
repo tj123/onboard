@@ -56,18 +56,21 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="bug in bugList | filter: filterUser | orderBy:predicate:reverse" ng-class="{'level-warning': bug.level == 'warning', 'level-alert': bug.level == 'alert'}">
+          <tr ng-repeat="bug in bugList | filter: filterUser | orderBy:predicate:reverse"
+              ng-class="{'level-warning': bug.level == 'warning', 'level-alert': bug.level == 'alert'}">
             <td>{{ bug.idInProject }}</td>
             <td>{{ priorities[bug.priority-1].desc }}</td>
             <td class="pointer title" ng-click="viewBugDrawer($event,bug)">
               <a href="" ng-click="viewBugDrawer($event,bug)">{{ bug.title }}</a></td>
             <td class="dueTime">
-                {{ bug.dueTime | date:'MM-dd' }}
-                <span ng-if="bug.level == 'warning'" class="level">
-                  <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="right" title="这个bug存在的时间已经超过了最近三个月已修复Bug的平均水平！"></i>
+              {{ bug.dueTime | date:'MM-dd' }}
+              <span ng-if="bug.level == 'warning'" class="level">
+                  <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="right"
+                     title="这个bug存在的时间已经超过了最近三个月已修复Bug的平均水平！"></i>
                 </span>
-                <span ng-if="bug.level == 'alert'" class="level">
-                  <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="right" title="这个bug存在的时间已经超过了最近三个月已修复Bug中的75%！"></i>
+              <span ng-if="bug.level == 'alert'" class="level">
+                  <i class="fa fa-exclamation-circle" data-toggle="tooltip" data-placement="right"
+                     title="这个bug存在的时间已经超过了最近三个月已修复Bug中的75%！"></i>
                 </span>
             </td>
             <td>{{ bug.bugAssigneeDTO.name }}</td>
@@ -75,7 +78,7 @@
           </tbody>
         </table>
         <div ng-show="busy" class="text-center clearfix"><strong><i
-            class="fa fa-spinner fa-spin"></i> 载入数据 ...</strong>
+          class="fa fa-spinner fa-spin"></i> 载入数据 ...</strong>
         </div>
         <div ng-show="!hasNext &amp;&amp; displayMoreBugs()" class="text-danger text-center clearfix">
           <strong>没有更多了...</strong></div>

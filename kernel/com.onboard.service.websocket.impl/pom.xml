@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>com.onboard</groupId>
@@ -8,10 +10,11 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <modelVersion>4.0.0</modelVersion>
   <artifactId>com.onboard.service.websocket.impl</artifactId>
+
   <name>com.onboard.service.websocket.impl</name>
   <description>com.onboard.service.websocket.impl</description>
+
   <packaging>bundle</packaging>
 
   <dependencies>
@@ -71,11 +74,12 @@
       <artifactId>com.onboard.service.collaboration</artifactId>
       <version>${project.version}</version>
     </dependency>
-      <dependency>
+    <dependency>
       <groupId>com.onboard</groupId>
       <artifactId>com.onboard.service.notification</artifactId>
       <version>${project.version}</version>
-    </dependency>  <dependency>
+    </dependency>
+    <dependency>
       <groupId>com.onboard</groupId>
       <artifactId>com.onboard.service.common</artifactId>
       <version>${project.version}</version>
@@ -90,8 +94,13 @@
       <artifactId>com.onboard.service.websocket</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>7.0.54</version>
+    </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
@@ -105,11 +114,11 @@
             <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
             <Bundle-Version>${project.version}</Bundle-Version>
             <Private-Package>
-                com.onboard.service.websocket.impl
+              com.onboard.service.websocket.impl
             </Private-Package>
           </instructions>
         </configuration>
-      </plugin>  
+      </plugin>
     </plugins>
   </build>
 

@@ -6,7 +6,7 @@
 <body id="onboard" data-libs="onboard" ng-controller="onboardCtrl">
 
 <!-- navigation bar -->
-<div id="main-nav" >
+<div id="main-nav">
   <div ui-view="nav"></div>
 </div>
 
@@ -76,7 +76,7 @@
   <div th:replace="company/me/MeWorkTime :: meWorkTime"></div>
 </script>
 <script type="text/ng-template" id="me-uncompleted-bugs.html">
-    <div th:replace="company/me/MeUncompletedBugs :: meUncompletedBugs"></div>
+  <div th:replace="company/me/MeUncompletedBugs :: meUncompletedBugs"></div>
 </script>
 <script type="text/ng-template" id="me-completed-bugs.html">
   <div th:replace="company/me/MeCompletedBugs :: meCompletedBugs"></div>

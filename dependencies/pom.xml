@@ -1,10 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.onboard</groupId>
   <artifactId>com.onboard.dependencies</artifactId>
   <version>2.1.3-SNAPSHOT</version>
+
   <packaging>pom</packaging>
+
   <name>Dependencies of Onboard</name>
   <description>com.onboard.dependencies</description>
 
@@ -590,7 +593,7 @@
         <scope>provided</scope>
       </dependency>
 
-      
+
       <dependency>
         <groupId>org.apache.servicemix.bundles</groupId>
         <artifactId>org.apache.servicemix.bundles.solr-solrj</artifactId>
@@ -874,7 +877,7 @@
       <groupId>org.apache.servicemix.bundles</groupId>
       <artifactId>org.apache.servicemix.bundles.noggit</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.elevenframework</groupId>
       <artifactId>aliyun-openservices</artifactId>

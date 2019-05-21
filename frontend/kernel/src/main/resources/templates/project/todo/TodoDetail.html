@@ -14,9 +14,12 @@
           </div>
           <div class="row" title="{{todo.content}}">
             <div class="col-sm-9">
-              <textarea type="text" id="edit_content" name="edit_content" class="form-control" ng-model="todo.content" ng-maxlength="200"
-                     required="" ng-blur="todo.updateByAttrs(['content']);edit_content = false; getRecommend(todo.content);" ng-show="edit_content"/>
-              <p class="click-link" ng-click="editContent()" ng-show="!edit_content"  >{{todo.content}}</p>
+              <textarea type="text" id="edit_content" name="edit_content" class="form-control" ng-model="todo.content"
+                        ng-maxlength="200"
+                        required=""
+                        ng-blur="todo.updateByAttrs(['content']);edit_content = false; getRecommend(todo.content);"
+                        ng-show="edit_content"/>
+              <p class="click-link" ng-click="editContent()" ng-show="!edit_content">{{todo.content}}</p>
             </div>
             <span class="project-todo-id text-muted col-sm-3">#{{todo.projectTodoId}}</span>
 

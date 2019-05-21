@@ -8,7 +8,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <!--<button type="button" class="close" data-dismiss="drawer"><span aria-hidden="true">&times;</span><span-->
-            <!--class="sr-only">Close</span>-->
+        <!--class="sr-only">Close</span>-->
         <!--</button>-->
         <h4>新建任务</h4>
       </div>
@@ -20,11 +20,13 @@
         </div>
 
         <hr/>
-          <div th:replace="project/todo/TodoDetailFileds :: todoDetailFileds"></div>
+        <div th:replace="project/todo/TodoDetailFileds :: todoDetailFileds"></div>
         <hr/>
 
         <div id="footer">
-          <button type="submit" class="btn btn-primary footer"  ng-disabled="newTodoForm.$invalid || submitBtn.disable" ng-click="createTodo()">{{submitBtn.name}}</button>
+          <button type="submit" class="btn btn-primary footer" ng-disabled="newTodoForm.$invalid || submitBtn.disable"
+                  ng-click="createTodo()">{{submitBtn.name}}
+          </button>
           <button type="button" class="btn btn-default footer" data-dismiss="drawer">取消</button>
         </div>
       </div>

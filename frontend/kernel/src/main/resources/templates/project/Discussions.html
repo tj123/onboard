@@ -37,12 +37,13 @@
       <tbody>
       <tr ng-repeat="topic in topics | filter: search" ng-animate="'slide'">
         <td class="col-sm-1">
-          <img class="img-circle speaker pull-right link" ng-src="{{ imageStore + topic.updator.avatar + '!avatar110'}}" alt="avatar" ng-click="gotoMePage(topic.updator.id)" />          
+          <img class="img-circle speaker pull-right link" ng-src="{{ imageStore + topic.updator.avatar + '!avatar110'}}"
+               alt="avatar" ng-click="gotoMePage(topic.updator.id)"/>
         </td>
         <td class="col-sm-1">
           <strong>{{ topic.updator.name }}</strong>
-        </td>        
-        <td class="col-sm-6 link" redirect="" data-target-type="{{topic.refType}}"  data-target-id="{{topic.refId}}">
+        </td>
+        <td class="col-sm-6 link" redirect="" data-target-type="{{topic.refType}}" data-target-id="{{topic.refId}}">
           <span ng-switch="topic.refType">
             <i class="fa fa-microphone" ng-switch-when="discussion"></i>
             <i class="fa fa-file-text-o" ng-switch-when="document"></i>
@@ -70,7 +71,8 @@
   </div>
   <div ng-show="!noMorePages()" class="row text-center">
     <button type="submit" class="btn btn-primary" ng-disabled="busy" ng-click="addMoreTopics()">
-      载入更多</button>
+      载入更多
+    </button>
   </div>
   <div ng-show="noMorePages()" class="text-danger text-center"><strong>没有更多的信息了...</strong></div>
   <!-- <div th:replace="project/NewDiscussion :: newDiscussion"></div>

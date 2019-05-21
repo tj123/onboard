@@ -1,8 +1,7 @@
 package com.onboard.frontend;
 
-import javax.servlet.Servlet;
-import javax.servlet.ServletException;
-
+import com.onboard.frontend.service.web.RequestFilter;
+import com.onboard.frontend.websocket.RedisMessageReceiver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -23,8 +22,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.RequestContextFilter;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
-import com.onboard.frontend.service.web.RequestFilter;
-import com.onboard.frontend.websocket.RedisMessageReceiver;
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
 
 /**
  * Created by XingLiang on 2015/4/23.
@@ -34,47 +33,36 @@ import com.onboard.frontend.websocket.RedisMessageReceiver;
 @ComponentScan
 @EnableWebSocket
 public class Application {
+
     public static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     @Bean
     RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-
         container.addMessageListener(listenerAdapter, new PatternTopic("channel"));
-
         return container;
-
     }
 
     @Bean
     MessageListenerAdapter listenerAdapter(RedisMessageReceiver receiver) {
-
         return new MessageListenerAdapter(receiver, "receiveMessage");
-
     }
 
     @Bean
     RedisMessageReceiver receiver() {
-
         return new RedisMessageReceiver();
-
     }
 
     @Bean
     StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
-
         return new StringRedisTemplate(connectionFactory);
-
     }
 
     @Bean
     public RequestContextFilter registrationRequestFilter() {
-
         RequestContextFilter requestContextFilter = new RequestFilter();
-
         return requestContextFilter;
-
     }
 
     @Bean

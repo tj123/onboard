@@ -12,7 +12,8 @@
     </div>
 
     <div class="list-group">
-      <a ng-repeat="company in companies" ui-sref="company.projects({companyId: company.id})" ui-sref-opts="{ reload: true }" class="list-group-item">
+      <a ng-repeat="company in companies" ui-sref="company.projects({companyId: company.id})"
+         ui-sref-opts="{ reload: true }" class="list-group-item">
         <h4 ng-bind="company.name" class="list-group-item-heading"></h4>
         <p class="list-group-item-text" ng-bind="company.description"></p>
       </a>
@@ -22,7 +23,7 @@
       <h3>创建团队</h3>
     </div>
 
-    <div ng-show="status=='error'"   class="alert alert-danger">{{message}}</div>
+    <div ng-show="status=='error'" class="alert alert-danger">{{message}}</div>
     <div ng-show="status=='success'" class="alert alert-success">创建成功</div>
 
     <form role="form" name="newTeamForm">
@@ -36,7 +37,8 @@
       <div ng-show="newTeamForm.name.$error.maxlength" class="alert alert-danger">
         团队名最长为50
       </div>
-      <button ng-click="createTeam()" class="btn btn-primary" ng-disabled="newTeamForm.$invalid || status == 'creating'">
+      <button ng-click="createTeam()" class="btn btn-primary"
+              ng-disabled="newTeamForm.$invalid || status == 'creating'">
         <span ng-show="status == 'creating'">正在创建</span>
         <span ng-hide="status == 'creating'">创建团队</span>
       </button>

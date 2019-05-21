@@ -160,15 +160,15 @@
   <script src="/static/js/ng-modules/util/emoji-service.js"></script>
   <script src="/static/js/ng-modules/util/commit-code.js"></script>
   <script src="/static/js/ng-modules/util/spinner-directive.js"></script>
-  
+
   <!-- data ng module -->
   <script src="/static/js/ng-modules/data/index.js"></script>
   <script src="/static/js/ng-modules/data/base-service.js"></script>
-    <script src="/static/js/ng-modules/data/user-data-service.js"></script>
-    <script src="/static/js/ng-modules/data/story-data-service.js"></script>
-    <script src="/static/js/ng-modules/data/step-data-service.js"></script>
-    <script src="/static/js/ng-modules/data/step-service.js"></script>
-    <script src="/static/js/ng-modules/data/bug-data-service.js"></script>
+  <script src="/static/js/ng-modules/data/user-data-service.js"></script>
+  <script src="/static/js/ng-modules/data/story-data-service.js"></script>
+  <script src="/static/js/ng-modules/data/step-data-service.js"></script>
+  <script src="/static/js/ng-modules/data/step-service.js"></script>
+  <script src="/static/js/ng-modules/data/bug-data-service.js"></script>
   <script src="/static/js/ng-modules/data/company-service.js"></script>
   <script src="/static/js/ng-modules/data/user-service.js"></script>
   <script src="/static/js/ng-modules/data/url-service.js"></script>
@@ -313,22 +313,24 @@
   <!-- websocket ng module -->
   <script src="/static/js/ng-modules/websocket/index.js"></script>
   <script src="/static/js/ng-modules/websocket/websocket-service.js"></script>
-    
-  <link rel="stylesheet" th:if="${not #lists.isEmpty(lessPluginFiles)}" th:each="lessPluginFile : ${ lessPluginFiles }" th:href="${lessPluginFile}"/>
+
+  <link rel="stylesheet" th:if="${not #lists.isEmpty(lessPluginFiles)}" th:each="lessPluginFile : ${ lessPluginFiles }"
+        th:href="${lessPluginFile}"/>
   <!-- endbuild -->
-  
+
   <!-- plugin ng module -->
-  <script th:if="${not #lists.isEmpty(jsPluginFiles)}" th:each="jsPluginFile : ${jsPluginFiles}" th:src="${jsPluginFile}" ></script>
-  
+  <script th:if="${not #lists.isEmpty(jsPluginFiles)}" th:each="jsPluginFile : ${jsPluginFiles}"
+          th:src="${jsPluginFile}"></script>
+
   <!-- zero clipboard -->
   <script type="text/javascript">
-    ZeroClipboard.config( { swfPath: "/static/lib/zeroclipboard/ZeroClipboard.swf" } );
+    ZeroClipboard.config({swfPath: "/static/lib/zeroclipboard/ZeroClipboard.swf"});
   </script>
-  
-   <!--account related -->
-   <script src="/static/js/ng-modules/account/index.js"></script>
-   <script src="/static/js/ng-modules/account/forget-password-ctrl.js"></script>
-  
+
+  <!--account related -->
+  <script src="/static/js/ng-modules/account/index.js"></script>
+  <script src="/static/js/ng-modules/account/forget-password-ctrl.js"></script>
+
 
 </head>
 <body>

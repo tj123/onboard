@@ -1,31 +1,9 @@
 package com.onboard.frontend;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.net.HttpCookie;
-import java.net.URI;
-import java.nio.charset.Charset;
-import java.util.BitSet;
-import java.util.Enumeration;
-import java.util.Formatter;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.onboard.frontend.model.User;
+import com.onboard.frontend.service.web.SessionService;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpEntityEnclosingRequest;
-import org.apache.http.HttpHeaders;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.AbortableHttpRequest;
 import org.apache.http.client.params.ClientPNames;
@@ -45,8 +23,22 @@ import org.mitre.dsmiley.httpproxy.ProxyServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.onboard.frontend.model.User;
-import com.onboard.frontend.service.web.SessionService;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.lang.reflect.Constructor;
+import java.net.HttpCookie;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.util.BitSet;
+import java.util.Enumeration;
+import java.util.Formatter;
+import java.util.List;
 
 public class ApiProxyServlet extends HttpServlet {
 
@@ -65,17 +57,23 @@ public class ApiProxyServlet extends HttpServlet {
     /* INIT PARAMETER NAME CONSTANTS */
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -7870610175969238743L;
 
-    /** A boolean parameter name to enable logging of input and target URLs to the servlet log. */
+    /**
+     * A boolean parameter name to enable logging of input and target URLs to the servlet log.
+     */
     public static final String P_LOG = "log";
 
-    /** A boolean parameter name to enable forwarding of the client IP */
+    /**
+     * A boolean parameter name to enable forwarding of the client IP
+     */
     public static final String P_FORWARDEDFOR = "forwardip";
 
-    /** The parameter name for the target (destination) URI to proxy to. */
+    /**
+     * The parameter name for the target (destination) URI to proxy to.
+     */
     protected static final String P_TARGET_URI = "targetUri";
     protected static final String ATTR_TARGET_URI = ProxyServlet.class.getSimpleName() + ".targetUri";
     protected static final String ATTR_TARGET_HOST = ProxyServlet.class.getSimpleName() + ".targetHost";
@@ -84,12 +82,16 @@ public class ApiProxyServlet extends HttpServlet {
 
     protected boolean doLog = false;
     protected boolean doForwardIP = true;
-    /** User agents shouldn't send the url fragment but what if it does? */
+    /**
+     * User agents shouldn't send the url fragment but what if it does?
+     */
     protected boolean doSendUrlFragment = true;
 
     // These next 3 are cached here, and should only be referred to in initialization logic. See the
     // ATTR_* parameters.
-    /** From the configured parameter "targetUri". */
+    /**
+     * From the configured parameter "targetUri".
+     */
     protected String targetUri;
     protected URI targetUriObj;// new URI(targetUri)
     protected HttpHost targetHost;// URIUtils.extractHost(targetUriObj);
@@ -157,14 +159,14 @@ public class ApiProxyServlet extends HttpServlet {
      * <a href=
      * "http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/impl/client/SystemDefaultHttpClient.html"
      * > SystemDefaultHttpClient</a> is used if available, otherwise it falls back to:
-     * 
+     *
      * <pre>
      * new DefaultHttpClient(new ThreadSafeClientConnManager(), hcParams)
      * </pre>
-     * 
+     * <p>
      * SystemDefaultHttpClient uses PoolingClientConnectionManager. In any case, it should be thread-safe.
      */
-    @SuppressWarnings({ "unchecked", "deprecation" })
+    @SuppressWarnings({"unchecked", "deprecation"})
     protected HttpClient createHttpClient(HttpParams hcParams) {
         try {
             // as of HttpComponents v4.2, this class is better since it uses System
@@ -184,7 +186,7 @@ public class ApiProxyServlet extends HttpServlet {
 
     /**
      * The http client used.
-     * 
+     *
      * @see #createHttpClient(HttpParams)
      */
     protected HttpClient getProxyClient() {
@@ -231,7 +233,7 @@ public class ApiProxyServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException,
-            IOException {
+        IOException {
         // initialize request attributes from caches if unset by a subclass by this point
         if (servletRequest.getAttribute(ATTR_TARGET_URI) == null) {
             servletRequest.setAttribute(ATTR_TARGET_URI, targetUri);
@@ -247,7 +249,7 @@ public class ApiProxyServlet extends HttpServlet {
         HttpRequest proxyRequest;
         // spec: RFC 2616, sec 4.3: either of these two headers signal that there is a message body.
         if (servletRequest.getHeader(HttpHeaders.CONTENT_LENGTH) != null
-                || servletRequest.getHeader(HttpHeaders.TRANSFER_ENCODING) != null) {
+            || servletRequest.getHeader(HttpHeaders.TRANSFER_ENCODING) != null) {
             HttpEntityEnclosingRequest eProxyRequest = new BasicHttpEntityEnclosingRequest(method, proxyRequestUri);
             // Add the input entity (streamed)
             // note: we don't bother ensuring we close the servletInputStream since the container handles it
@@ -266,7 +268,7 @@ public class ApiProxyServlet extends HttpServlet {
             // Execute the request
             if (doLog) {
                 log("proxy " + method + " uri: " + servletRequest.getRequestURI() + " -- "
-                        + proxyRequest.getRequestLine().getUri());
+                    + proxyRequest.getRequestLine().getUri());
             }
             proxyResponse = proxyClient.execute(getTargetHost(servletRequest), proxyRequest);
 
@@ -314,15 +316,15 @@ public class ApiProxyServlet extends HttpServlet {
     }
 
     protected boolean doResponseRedirectOrNotModifiedLogic(HttpServletRequest servletRequest,
-            HttpServletResponse servletResponse, HttpResponse proxyResponse, int statusCode) throws ServletException, IOException {
+                                                           HttpServletResponse servletResponse, HttpResponse proxyResponse, int statusCode) throws ServletException, IOException {
         // Check if the proxy response is a redirect
         // The following code is adapted from org.tigris.noodle.filters.CheckForRedirect
         if (statusCode >= HttpServletResponse.SC_MULTIPLE_CHOICES /* 300 */
-                && statusCode < HttpServletResponse.SC_NOT_MODIFIED /* 304 */) {
+            && statusCode < HttpServletResponse.SC_NOT_MODIFIED /* 304 */) {
             Header locationHeader = proxyResponse.getLastHeader(HttpHeaders.LOCATION);
             if (locationHeader == null) {
                 throw new ServletException("Received status code: " + statusCode + " but no " + HttpHeaders.LOCATION
-                        + " header was found in the response");
+                    + " header was found in the response");
             }
             // Modify the redirect to go to this proxy servlet rather that the proxied host
             String locStr = rewriteUrlFromResponse(servletRequest, locationHeader.getValue());
@@ -369,16 +371,19 @@ public class ApiProxyServlet extends HttpServlet {
      * an HttpClient HeaderGroup class instead of Set<String> because this approach does case insensitive lookup faster.
      */
     protected static final HeaderGroup hopByHopHeaders;
+
     static {
         hopByHopHeaders = new HeaderGroup();
-        String[] headers = new String[] { "Connection", "Keep-Alive", "Proxy-Authenticate", "Proxy-Authorization", "TE",
-                "Trailers", "Transfer-Encoding", "Upgrade" };
+        String[] headers = new String[]{"Connection", "Keep-Alive", "Proxy-Authenticate", "Proxy-Authorization", "TE",
+            "Trailers", "Transfer-Encoding", "Upgrade"};
         for (String header : headers) {
             hopByHopHeaders.addHeader(new BasicHeader(header, null));
         }
     }
 
-    /** Copy request headers from the servlet client to the proxy request. */
+    /**
+     * Copy request headers from the servlet client to the proxy request.
+     */
     protected void copyRequestHeaders(HttpServletRequest servletRequest, HttpRequest proxyRequest) {
         // Get an Enumeration of all of the header names sent by the client
         Enumeration enumerationOfHeaderNames = servletRequest.getHeaderNames();
@@ -421,14 +426,16 @@ public class ApiProxyServlet extends HttpServlet {
         }
     }
 
-    /** Copy proxied response headers back to the servlet client. */
+    /**
+     * Copy proxied response headers back to the servlet client.
+     */
     protected void copyResponseHeaders(HttpResponse proxyResponse, HttpServletRequest servletRequest,
-            HttpServletResponse servletResponse) {
+                                       HttpServletResponse servletResponse) {
         for (Header header : proxyResponse.getAllHeaders()) {
             if (hopByHopHeaders.containsHeader(header.getName()))
                 continue;
             if (header.getName().equals(org.apache.http.cookie.SM.SET_COOKIE)
-                    || header.getName().equals(org.apache.http.cookie.SM.SET_COOKIE2)) {
+                || header.getName().equals(org.apache.http.cookie.SM.SET_COOKIE2)) {
                 copyProxyCookie(servletRequest, servletResponse, header);
             } else {
                 servletResponse.addHeader(header.getName(), header.getValue());
@@ -487,12 +494,16 @@ public class ApiProxyServlet extends HttpServlet {
         return cookieValue;
     }
 
-    /** The string prefixing rewritten cookies. */
+    /**
+     * The string prefixing rewritten cookies.
+     */
     protected String getCookieNamePrefix() {
         return "!Proxy!" + getServletConfig().getServletName();
     }
 
-    /** Copy response body data (the entity) from the proxy to the servlet client. */
+    /**
+     * Copy response body data (the entity) from the proxy to the servlet client.
+     */
     protected void copyResponseEntity(HttpResponse proxyResponse, HttpServletResponse servletResponse) throws IOException {
         HttpEntity entity = proxyResponse.getEntity();
         if (entity != null) {
@@ -560,21 +571,22 @@ public class ApiProxyServlet extends HttpServlet {
         return theUrl;
     }
 
-    /** The target URI as configured. Not null. */
+    /**
+     * The target URI as configured. Not null.
+     */
     public String getTargetUri() {
         return targetUri;
     }
 
     /**
      * Encodes characters in the query or fragment part of the URI.
-     * 
+     *
      * <p>
      * Unfortunately, an incoming URI sometimes has characters disallowed by the spec. HttpClient insists that the outgoing
      * proxied request has a valid URI because it uses Java's {@link URI}. To be more forgiving, we must escape the problematic
      * characters. See the URI class for the spec.
-     * 
-     * @param in
-     *            example: name=value&foo=bar#fragment
+     *
+     * @param in example: name=value&foo=bar#fragment
      */
     protected static CharSequence encodeUriQuery(CharSequence in) {
         // Note that I can't simply use URI.java to encode because it will escape pre-existing escaped things.
@@ -608,6 +620,7 @@ public class ApiProxyServlet extends HttpServlet {
     }
 
     protected static final BitSet asciiQueryChars;
+
     static {
         char[] c_unreserved = "_-!.~'()*".toCharArray();// plus alphanum
         char[] c_punct = ",;:$&+=".toCharArray();

@@ -16,8 +16,10 @@
     <ul class="second-nav-bar">
       <li class="second-nav-item" ui-sref-active="active"><a ui-sref="company.project.todolists.open">进行中清单</a></li>
       <li class="second-nav-item" ui-sref-active="active"><a ui-sref="company.project.todolists.archived">归档清单</a></li>
-      <li class="second-nav-button" dropdown-form-toggle="newTodolistForm" ng-click="newTodolistForm.open=!newTodolistForm.open;focusTodolistName()">
-        <i class="fa fa-plus"></i> 新建待办清单</li>
+      <li class="second-nav-button" dropdown-form-toggle="newTodolistForm"
+          ng-click="newTodolistForm.open=!newTodolistForm.open;focusTodolistName()">
+        <i class="fa fa-plus"></i> 新建待办清单
+      </li>
       <form class="ballon newTodolistForm dropdown-form" name="newTodolistForm" dropdown-form=""
             is-open="newTodolistForm.open">
         <p>
@@ -54,11 +56,11 @@
 
 </div>
 <div th:fragment="opentodolists" ng-controller="openTodolistsCtrl" class="opentodolists">
-  
+
   <div class="todo-search-panel pull-right col-md-1" style="right:20px">
     <div class="btn-group btn btn-primary btn-sm" ng-click="expandAll()" style="width:120px">
-        <div class="click-link" ng-show="!allExpanded">展开任务列表</div>
-        <div class="click-link" ng-show="allExpanded">收起任务列表</div>
+      <div class="click-link" ng-show="!allExpanded">展开任务列表</div>
+      <div class="click-link" ng-show="allExpanded">收起任务列表</div>
     </div>
     <div class="btn-group todo-filter-title">任务筛选</div>
     <div class="btn-group">
@@ -111,14 +113,16 @@
         <li ng-class="{active: searchTodo.status === '!closed'}">
           <a ng-click="searchTodo.status = '!closed'">所有状态</a>
         </li>
-        <li ng-class="{active: searchTodo.status === status.value}" ng-repeat="status in todoStatuses | filter: {active: true}">
+        <li ng-class="{active: searchTodo.status === status.value}"
+            ng-repeat="status in todoStatuses | filter: {active: true}">
           <a ng-click="searchTodo.status = status.value">{{status.name}}</a>
         </li>
       </ul>
     </div>
   </div>
-  
-  <div class="todo-panels todolists-content todolist-drag-body col-md-10" ui-sortable="todolistSortableOptions" ng-model="todolists">
+
+  <div class="todo-panels todolists-content todolist-drag-body col-md-10" ui-sortable="todolistSortableOptions"
+       ng-model="todolists">
     <div class="todo-panel" ng-repeat="todolist in todolists | filter:todolistFilter" ng-if="canShow(todolist)">
       <div class="todo-panel-heading">
         <!-- ng-class="{'border-bottom': !todolist.openTodos.length}" -->

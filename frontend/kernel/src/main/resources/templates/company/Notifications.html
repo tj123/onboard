@@ -13,7 +13,8 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="list-group">
-          <a href="#" ng-click="filterAsUnread()" ng-class="{'active': selectPanel == 0}" class="list-group-item filter">
+          <a href="#" ng-click="filterAsUnread()" ng-class="{'active': selectPanel == 0}"
+             class="list-group-item filter">
             <i class="fa fa-envelope"></i>
             <span>未读通知</span>
           </a>
@@ -22,12 +23,12 @@
             <span>所有通知</span>
           </a>
           <!--<a ui-sref="account.mentioned" ui-sref-active="active" class="list-group-item">-->
-            <!--<i class="fa fa-at"></i>-->
-            <!--<span>提到我的</span>-->
+          <!--<i class="fa fa-at"></i>-->
+          <!--<span>提到我的</span>-->
           <!--</a>-->
           <!--<a ui-sref="account.system" ui-sref-active="active" class="list-group-item">-->
-            <!--<i class="fa fa-signal"></i>-->
-            <!--<span>系统通知</span>-->
+          <!--<i class="fa fa-signal"></i>-->
+          <!--<span>系统通知</span>-->
           <!--</a>-->
         </div>
       </div>
@@ -43,9 +44,11 @@
                 <i class="fa fa-clock-o"></i>
                 <span am-time-ago="notification.created/1000"></span>
               </div>
-              <a ui-sref="company.me({userId: notification.activity.creatorId})">{{notification.activity.creatorName}}</a>
+              <a
+                ui-sref="company.me({userId: notification.activity.creatorId})">{{notification.activity.creatorName}}</a>
               <span>在</span>
-              <a ui-sref="company.project.iteration.activeIteration.todos({projectId: notification.activity.projectId})">{{notification.activity.projectName}}</a>
+              <a
+                ui-sref="company.project.iteration.activeIteration.todos({projectId: notification.activity.projectId})">{{notification.activity.projectName}}</a>
               <span>中{{notification.activity.subject}}</span>
               <a href="" open-drawer=""
                  open-drawer-type="notification.activity.attachType"

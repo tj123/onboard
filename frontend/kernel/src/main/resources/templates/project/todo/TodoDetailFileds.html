@@ -11,7 +11,8 @@
         <span class="col-xs-5 text-muted">状态：</span>
 
         <div class="col-xs-7 btn-group">
-          <span class="label label-default dropdown-toggle" data-toggle="dropdown" ng-class="{pointer : !todolist.archived &amp;&amp; todo.id}">
+          <span class="label label-default dropdown-toggle" data-toggle="dropdown"
+                ng-class="{pointer : !todolist.archived &amp;&amp; todo.id}">
               {{todoUtilService.getStatus(todo).name}}
           </span>
           <ul class="dropdown-menu" role="menu" ng-show="!todolist.archived &amp;&amp; todo.id">
@@ -31,7 +32,8 @@
         <span class="col-xs-5 text-muted">任务类型：</span>
 
         <div class="col-xs-7 btn-group">
-          <span class="todo-type-icons" data-toggle="dropdown" ng-class="{pointer : !todolist.archived &amp;&amp; todo.status != 'closed'}">
+          <span class="todo-type-icons" data-toggle="dropdown"
+                ng-class="{pointer : !todolist.archived &amp;&amp; todo.status != 'closed'}">
             <i class="fa" ng-class="{'fa-bars' : todoUtilService.getType(todo).value == 'task',
                                     'fa-bookmark' : todoUtilService.getType(todo).value == 'story',
                                     'fa-bug' : todoUtilService.getType(todo).value == 'bug'}"></i>
@@ -93,7 +95,8 @@
           <span data-toggle="dropdown" ng-class="{pointer : !todolist.archived &amp;&amp; todo.status != 'closed'}">
             {{todoUtilService.getTodolist(todo).name}}
           </span>
-          <ul class="dropdown-menu todolist-dropdown-list" role="menu" ng-show="!todolist.archived &amp;&amp; todo.status != 'closed'">
+          <ul class="dropdown-menu todolist-dropdown-list" role="menu"
+              ng-show="!todolist.archived &amp;&amp; todo.status != 'closed'">
             <li ng-repeat="todolist in todolists" ng-click="todo.setTodolistId(todolist.id)">
               <a class="pointer">{{todolist.name}}</a>
             </li>
@@ -112,7 +115,8 @@
                  ng-change="todo.updateByAttrs(['assigneeId', 'dueDate'], false)"
                  ng-model="todo.dueDate" is-open="dtpOpened" close-text="关闭" clear-text="不指定" current-text="今天"
                  min-date="todoDueDateMin"/>
-          <span class="pointer" ng-click="openDTP($event)" ng-show="!todolist.archived &amp;&amp; todo.status != 'closed'">
+          <span class="pointer" ng-click="openDTP($event)"
+                ng-show="!todolist.archived &amp;&amp; todo.status != 'closed'">
             <span ng-show="todo.dueDate">{{ todo.dueDate | date: 'yyyy-MM-dd'}}</span>
             <span ng-hide="todo.dueDate">未设置</span>
           </span>
@@ -130,13 +134,15 @@
         <span class="col-xs-5 text-muted">执行人：</span>
 
         <div class="col-xs-7 btn-group">
-          <span class="pointer todo-user" data-toggle="dropdown" ng-click="getProjectUsers(false, todo.projectId, todo.companyId)"
+          <span class="pointer todo-user" data-toggle="dropdown"
+                ng-click="getProjectUsers(false, todo.projectId, todo.companyId)"
                 ng-class="{pointer : !todolist.archived &amp;&amp; todo.status != 'closed'}">
             <img ng-src="{{todo.user.avatarUrl}}"/>
             <span class="username">{{todo.user.name}}</span>
           </span>
           <div class="pull-right" style="display:inline-block">
-            <i class="fa fa-star" style="line-height: 25px; cursor: pointer" title="设置为推荐责任人-{{recommend.name}}" ng-click="todo.assign(recommend)">推荐:{{recommend.name}}</i>
+            <i class="fa fa-star" style="line-height: 25px; cursor: pointer" title="设置为推荐责任人-{{recommend.name}}"
+               ng-click="todo.assign(recommend)">推荐:{{recommend.name}}</i>
           </div>
 
           <ul class="dropdown-menu users" role="menu" ng-show="!todolist.archived &amp;&amp; todo.status != 'closed'">

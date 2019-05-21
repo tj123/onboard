@@ -22,7 +22,8 @@
           </div>
         </form>
         <div class="form-inline pull-right search-user">
-          <select class="form-control" ng-options="option.id as option.name for option in userOptions" ng-model="userId" ng-change="changeUser()" />
+          <select class="form-control" ng-options="option.id as option.name for option in userOptions" ng-model="userId"
+                  ng-change="changeUser()"/>
         </div>
       </div>
     </div>
@@ -49,7 +50,7 @@
       </div>
 
       <div class="col-md-10">
-        
+
         <!-- search results -->
         <div class="table-responsive">
           <table id="search-result" class="table table-hover table-condensed">

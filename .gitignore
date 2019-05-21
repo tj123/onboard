@@ -34,3 +34,5 @@ application-*.js
 OnboardWeb/src/main/resources/templates/fragments/build
 
 generator/*.xml
+
+~$*.docx

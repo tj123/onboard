@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.onboard</groupId>
   <artifactId>com.onboard.parent</artifactId>
   <version>3.0.0-SNAPSHOT</version>
+
   <packaging>pom</packaging>
+
   <name>com.onboard.parent</name>
   <description>com.onboard.parent</description>
 
@@ -18,6 +21,8 @@
   </properties>
 
   <modules>
+    <module>dependencies</module>
+    <module>frontend</module>
     <module>kernel/com.onboard.osgi.dependencies</module>
     <module>kernel/com.onboard.domain.mapper.model</module>
     <module>kernel/com.onboard.domain.model</module>

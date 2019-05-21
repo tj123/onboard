@@ -1,10 +1,5 @@
 package com.onboard.frontend.service.account.impl;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.onboard.frontend.configuration.AccountConfigure;
 import com.onboard.frontend.controller.page.account.form.ForgetPasswordForm;
 import com.onboard.frontend.controller.page.account.form.RegistrationForm;
@@ -16,6 +11,10 @@ import com.onboard.frontend.redis.Repository;
 import com.onboard.frontend.redis.TokenType;
 import com.onboard.frontend.service.account.AccountService;
 import com.onboard.frontend.service.net.impl.NetServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * Created by XingLiang on 2015/4/23.
@@ -148,7 +147,7 @@ public class AccountServiceImpl implements AccountService {
         User result = null;
         try {
             result = netService.postForFormObject(String.format(AUTHENTICATE_USER_WITH_THIRDPART_USER, thirdpartUserId), user,
-                    User.class);
+                User.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
